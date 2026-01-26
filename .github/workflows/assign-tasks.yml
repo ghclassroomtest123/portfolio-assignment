@@ -1,6 +1,7 @@
 name: Assign Student Tasks
 on:
-  create:
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -18,7 +19,11 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const body = fs.readFileSync('.github/curriculum/01-setup.md', 'utf8');
+            const path = '.github/curriculum/01-setup.md';
+            let body = "No content found for this step.";
+            if (fs.existsSync(path)) {
+              body = fs.readFileSync(path, 'utf8') || body;
+            }
             
             await github.rest.issues.create({
               owner: context.repo.owner,
@@ -33,7 +38,12 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const body = fs.readFileSync('.github/curriculum/02-hero.md', 'utf8');
+            const path = '.github/curriculum/02-hero.md';
+            let body = "No content found for this step.";
+            if (fs.existsSync(path)) {
+              body = fs.readFileSync(path, 'utf8') || body;
+            }
+
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
