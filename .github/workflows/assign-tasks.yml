@@ -1,0 +1,45 @@
+name: Assign Student Tasks
+on:
+  create:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Create Step 1 - Setup
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('.github/curriculum/01-setup.md', 'utf8');
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Step 1: 🏗️ Project Setup",
+              body: body,
+              labels: ['setup', 'priority-high']
+            });
+
+      - name: Create Step 2 - Information Section
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('.github/curriculum/02-hero.md', 'utf8');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Step 2: 🦸 Build the Hero",
+              body: body,
+              labels: ['frontend']
+            });
+            
+      # Add more steps as needed!
