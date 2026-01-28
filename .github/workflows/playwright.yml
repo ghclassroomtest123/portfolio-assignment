@@ -5,6 +5,11 @@ on:
   # pull_request:
   #   branches: [ main, master ]
   workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
 jobs:
   test:
     timeout-minutes: 60
@@ -19,7 +24,79 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --reporter=json > test-results.json || true
+    - name: Process Test Results and Close Issues
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('test-results.json', 'utf8'));
+          
+          const testToIssueMap = {
+            'setup.test.ts': 'Step 1: 🏗️ Project Setup',
+            'style.test.ts': 'Step 2: 🎨 Plan Your Style',
+            'hero.test.ts': 'Step 3: 🦸 Build the Hero',
+            'projects.test.ts': 'Step 4: 📦 Build the Projects Section',
+            'skills.test.ts': 'Step 5: 🛠️ Build the Skills Section',
+            'header-footer.test.ts': 'Step 6: 📦 Build the Header & Footer Section'
+          };
+
+          const passedFiles = new Set();
+          const failedFiles = new Set();
+
+          results.suites.forEach(suite => {
+            const fileName = suite.file;
+            let allPassed = true;
+            
+            const checkSpecs = (s) => {
+              if (s.specs) {
+                s.specs.forEach(spec => {
+                  if (spec.ok === false) allPassed = false;
+                });
+              }
+              if (s.suites) {
+                s.suites.forEach(childSuite => checkSpecs(childSuite));
+              }
+            };
+            
+            checkSpecs(suite);
+            
+            if (allPassed) {
+              passedFiles.add(fileName);
+            } else {
+              failedFiles.add(fileName);
+            }
+          });
+
+          const openIssues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open'
+          });
+
+          for (const [file, issueTitle] of Object.entries(testToIssueMap)) {
+            const issue = openIssues.data.find(i => i.title === issueTitle);
+            if (issue) {
+              const isPassed = Array.from(passedFiles).some(f => f.includes(file));
+              const isFailed = Array.from(failedFiles).some(f => f.includes(file));
+              
+              if (isPassed && !isFailed) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `✅ All tests in \`${file}\` passed! Closing this issue.`
+                });
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed'
+                });
+                console.log(`Closed issue: ${issueTitle}`);
+              }
+            }
+          }
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

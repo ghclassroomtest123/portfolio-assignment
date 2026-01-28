@@ -22,7 +22,7 @@ export default defineConfig({
   ],
 })
 ```
-8. Add the following to the top of your App.css file `@import "tailwindcss";`
+8. Add the following to the top of your index.css file `@import "tailwindcss";`
 9. Run `npm run dev` to verify it works.
 10. Once it works, push your code to your repo
 

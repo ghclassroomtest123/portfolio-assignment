@@ -14,118 +14,72 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Create Step 6 - Header & Footer Section
+      - name: Create Issues
         uses: actions/github-script@v6
         with:
           script: |
             const fs = require('fs');
-            const path = '.github/curriculum/06-header-footer.md';
-            let body = "No content found for this step.";
-            if (fs.existsSync(path)) {
-              body = fs.readFileSync(path, 'utf8') || body;
-            }
             
-            await github.rest.issues.create({
+            const tasks = [
+              {
+                title: "Step 6: 📦 Build the Header & Footer Section",
+                path: '.github/curriculum/06-header-footer.md',
+                labels: ['frontend']
+              },
+              {
+                title: "Step 5: 🛠️ Build the Skills Section",
+                path: '.github/curriculum/05-skills.md',
+                labels: ['frontend']
+              },
+              {
+                title: "Step 4: 📦 Build the Projects Section",
+                path: '.github/curriculum/04-projects.md',
+                labels: ['frontend']
+              },
+              {
+                title: "Step 3: 🦸 Build the Hero",
+                path: '.github/curriculum/03-hero.md',
+                labels: ['frontend']
+              },
+              {
+                title: "Step 2: 🎨 Plan Your Style",
+                path: '.github/curriculum/02-style.md',
+                labels: ['setup']
+              },
+              {
+                title: "Step 1: 🏗️ Project Setup",
+                path: '.github/curriculum/01-setup.md',
+                labels: ['setup']
+              }
+            ];
+
+            // Get all open issues to avoid duplicates
+            const existingIssues = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: "Step 6: 📦 Build the Header & Footer Section",
-              body: body,
-              labels: ['frontend']
+              state: 'open'
             });
 
-      - name: Create Step 5 - Skills Section
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const path = '.github/curriculum/05-skills.md';
-            let body = "No content found for this step.";
-            if (fs.existsSync(path)) {
-              body = fs.readFileSync(path, 'utf8') || body;
+            const existingTitles = existingIssues.data.map(issue => issue.title);
+
+            for (const task of tasks) {
+              if (existingTitles.includes(task.title)) {
+                console.log(`Issue already exists: ${task.title}`);
+                continue;
+              }
+
+              let body = "No content found for this step.";
+              if (fs.existsSync(task.path)) {
+                body = fs.readFileSync(task.path, 'utf8') || body;
+              }
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: task.title,
+                body: body,
+                labels: task.labels
+              });
+              console.log(`Created issue: ${task.title}`);
             }
-            
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: "Step 5: 🛠️ Build the Skills Section",
-              body: body,
-              labels: ['frontend']
-            });
-
-      - name: Create Step 4 - Projects Section
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const path = '.github/curriculum/04-projects.md';
-            let body = "No content found for this step.";
-            if (fs.existsSync(path)) {
-              body = fs.readFileSync(path, 'utf8') || body;
-            }
-            
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: "Step 4: 📦 Build the Projects Section",
-              body: body,
-              labels: ['frontend']
-            });
-
-      - name: Create Step 3 - Hero Section
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const path = '.github/curriculum/03-hero.md';
-            let body = "No content found for this step.";
-            if (fs.existsSync(path)) {
-              body = fs.readFileSync(path, 'utf8') || body;
-            }
-            
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: "Step 3: 🦸 Build the Hero",
-              body: body,
-              labels: ['frontend']
-            });
-
-      - name: Create Step 2 - Styling
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const path = '.github/curriculum/02-style.md';
-            let body = "No content found for this step.";
-            if (fs.existsSync(path)) {
-              body = fs.readFileSync(path, 'utf8') || body;
-            }
-
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: "Step 2: 🎨 Plan Your Style",
-              body: body,
-              labels: ['setup']
-            });
-            
-
-      - name: Create Step 1 - Setup
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const path = '.github/curriculum/01-setup.md';
-            let body = "No content found for this step.";
-            if (fs.existsSync(path)) {
-              body = fs.readFileSync(path, 'utf8') || body;
-            }
-            
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: "Step 1: 🏗️ Project Setup",
-              body: body,
-              labels: ['setup']
-            });
       # Add more steps as needed!
