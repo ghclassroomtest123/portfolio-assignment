@@ -1,4 +1,4 @@
-## 🎨 Ticket 2: Plan Your Style
+# 🎨 Ticket 2: Plan Your Style
 
 **Task:** Sketch out the visual direction for your site before touching code.
 
@@ -9,7 +9,7 @@
 3. You can use [Coolors](https://coolors.co/) and go to the generator to find colors fast
 4. If you need some inspiration for the layout or fonts, you can look for some nice portfolios online or look at some of ours. [https://nishitsharma.vercel.app/](https://nishitsharma.vercel.app/)
 
-### Definition of Done:
+**Definition of Done:**
 
 - You have jotted down a layout/font direction and confirmed a 2–3 color palette.
 

@@ -14,3 +14,5 @@
 8. Add both components to `App.tsx`. The Header should be at the top, and the Footer at the bottom.
 9. Check your site on mobile and desktop. Ensure all links work and the spacing between sections feels balanced.
 
+**Definition of Done:**
+- Running `npx playright test header-footer.test.ts` in your project directory passes

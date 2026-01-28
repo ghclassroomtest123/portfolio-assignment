@@ -30,4 +30,5 @@ export default defineConfig({
 
 - You have a folder named `portfolio`.
 - You have pushed your initial Vite code to this repo.
+- Running `npx playright test setup.test.ts` in your project directory passes
 

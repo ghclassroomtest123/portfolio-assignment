@@ -13,3 +13,5 @@
 7. Make sure the fonts and colors match the Hero and Projects sections
 8. Make sure to add `data-testid="skills-section"`
 
+**Definition of Done:**
+- Running `npx playright test skills.test.ts` in your project directory passes

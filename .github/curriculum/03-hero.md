@@ -22,3 +22,5 @@
 6. With “test” showing, change the background so it matches your palette. In `index.css` under the `:root` rule, use `var(--color-name)` (e.g., `background-color: var(--color-primary)`). Once it looks right, feel free to change anything else. Documentation or a googling stuff can help when it gets confusing.
 7. The foundation is now set. Build the full hero using Tailwind and put this code in the first HTML tag to make sure the tests pass: `[data-testid="hero-section"]`. Don’t hesitate to reach out if you get stuck.
 
+**Definition of Done:**
+- Running `npx playright test hero.test.ts` in your project directory passes
