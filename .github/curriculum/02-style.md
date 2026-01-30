@@ -13,5 +13,5 @@
 
 **Definition of Done:**
 
-- You have jotted down a layout/font direction and confirmed a 2–3 color palette.
+- You have jotted down a layout/font direction and confirmed a 2–3 color palette. 
 
