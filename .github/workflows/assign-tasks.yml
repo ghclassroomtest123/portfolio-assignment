@@ -22,32 +22,32 @@ jobs:
             
             const tasks = [
               {
-                title: "Step 6: 📦 Build the Header & Footer Section",
+                title: "Step 6: Build the Header & Footer Section",
                 path: '.github/curriculum/06-header-footer.md',
                 labels: ['frontend']
               },
               {
-                title: "Step 5: 🛠️ Build the Skills Section",
+                title: "Step 5: Build the Skills Section",
                 path: '.github/curriculum/05-skills.md',
                 labels: ['frontend']
               },
               {
-                title: "Step 4: 📦 Build the Projects Section",
+                title: "Step 4: Build the Projects Section",
                 path: '.github/curriculum/04-projects.md',
                 labels: ['frontend']
               },
               {
-                title: "Step 3: 🦸 Build the Hero",
+                title: "Step 3: Build the Hero",
                 path: '.github/curriculum/03-hero.md',
                 labels: ['frontend']
               },
               {
-                title: "Step 2: 🎨 Plan Your Style",
+                title: "Step 2: Plan Your Style",
                 path: '.github/curriculum/02-style.md',
                 labels: ['setup']
               },
               {
-                title: "Step 1: 🏗️ Project Setup",
+                title: "Step 1: Project Setup",
                 path: '.github/curriculum/01-setup.md',
                 labels: ['setup']
               }

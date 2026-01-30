@@ -1,4 +1,4 @@
-# 🎨 Ticket 2: Plan Your Style
+# Ticket 2: Plan Your Style
 
 **Task:** Sketch out the visual direction for your site before touching code.
 

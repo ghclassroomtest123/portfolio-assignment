@@ -1,4 +1,4 @@
-# 🏗️ Ticket 1: Initialize Your Project
+# Ticket 1: Initialize Your Project
 
 **Task:** Set up the frontend infrastructure.
 

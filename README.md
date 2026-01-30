@@ -1,6 +1,6 @@
-# 🎓 Blueprint Developer Bootcamp: Portfolio Assignment
+# Blueprint Developer Bootcamp: Portfolio Assignment
 
-## 🛠️ How This Works: Issue-Driven Development
+## How This Works: Issue-Driven Development
 
 Your work as been assigned to you via tickets.
 
@@ -14,7 +14,7 @@ Your work as been assigned to you via tickets.
 
 ---
 
-## 🤖 The Auto-Grader
+## The Auto-Grader
 
 We have included a test suite (`Playwright`) that acts like a QA engineer. It will check your code for the necessary requirements.
 
@@ -28,13 +28,13 @@ Once you clone this repo:
 `# 2. Run the Grader`  
 `npx playwright test`  
 
-**🔴 If the tests fail:** Read the error message. It will tell you exactly what is missing.
+**If the tests fail:** Read the error message. It will tell you exactly what is missing.
 
-**🟢 If the tests pass:** You are ready to close your current ticket and move to the next.
+**If the tests pass:** You are ready to close your current ticket and move to the next.
 
 ---
 
-## 💡 Requirement: Data Attributes
+## Requirement: Data Attributes
 
 To allow our tests to grade your creative designs, you must use **Data Attributes** to label your sections. You can style your site however you want, as long as these labels exist.
 
@@ -42,14 +42,14 @@ To allow our tests to grade your creative designs, you must use **Data Attribute
 
 If a ticket asks for `data-testid="projects"`, your code **must** include:
 
-`// ✅ The Grader finds this:`  
+`// The Grader finds this:`  
 `<section data-section="projects" className="my-cool-grid">`  
   `{/* Your project cards go here */}`  
 `</section>`  
 
 ---
 
-## 🚀 Ready?
+## Ready?
 
 Head over to the Issues Tab and open Ticket #1.
 

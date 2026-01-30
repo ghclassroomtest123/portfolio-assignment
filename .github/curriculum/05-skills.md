@@ -1,4 +1,4 @@
-# 🛠️ Ticket 5: Skills & Experience
+# Ticket 5: Skills & Experience
 
 **Task:** List your technical skills and any relevant experience or education.
 

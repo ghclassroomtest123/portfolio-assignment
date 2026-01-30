@@ -1,4 +1,4 @@
-# 🏗️ Ticket 6: Header & Footer
+# Ticket 6: Header & Footer
 
 **Task:** Add navigation and a footer to complete the site structure.
 

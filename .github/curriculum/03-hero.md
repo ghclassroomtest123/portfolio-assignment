@@ -1,4 +1,4 @@
-# 🦸 Ticket 3: The Hero Section
+# Ticket 3: The Hero Section
 
 **Task:** Build the landing area of your site.
 

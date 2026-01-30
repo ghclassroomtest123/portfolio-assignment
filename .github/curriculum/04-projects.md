@@ -1,4 +1,4 @@
-# 🚀 Ticket 4: Projects Section
+# Ticket 4: Projects Section
 
 **Task:** Showcase your work by building a dynamic projects section.
 

@@ -35,12 +35,12 @@ jobs:
           const results = JSON.parse(fs.readFileSync('test-results.json', 'utf8'));
           
           const testToIssueMap = {
-            'setup.test.ts': 'Step 1: 🏗️ Project Setup',
-            'style.test.ts': 'Step 2: 🎨 Plan Your Style',
-            'hero.test.ts': 'Step 3: 🦸 Build the Hero',
-            'projects.test.ts': 'Step 4: 📦 Build the Projects Section',
-            'skills.test.ts': 'Step 5: 🛠️ Build the Skills Section',
-            'header-footer.test.ts': 'Step 6: 📦 Build the Header & Footer Section'
+            'setup.test.ts': 'Step 1: Project Setup',
+            'style.test.ts': 'Step 2: Plan Your Style',
+            'hero.test.ts': 'Step 3: Build the Hero',
+            'projects.test.ts': 'Step 4: Build the Projects Section',
+            'skills.test.ts': 'Step 5: Build the Skills Section',
+            'header-footer.test.ts': 'Step 6: Build the Header & Footer Section'
           };
 
           const passedFiles = new Set();
@@ -87,7 +87,7 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: issue.number,
-                  body: `✅ All tests in \`${file}\` passed! Closing this issue.`
+                  body: `All tests in \`${file}\` passed! Closing this issue.`
                 });
                 await github.rest.issues.update({
                   owner: context.repo.owner,
