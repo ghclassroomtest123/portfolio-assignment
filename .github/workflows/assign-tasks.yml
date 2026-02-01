@@ -57,7 +57,7 @@ jobs:
             const existingIssues = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'open'
+              state: 'all'
             });
 
             const existingTitles = existingIssues.data.map(issue => issue.title);
