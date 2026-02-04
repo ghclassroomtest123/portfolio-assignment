@@ -22,6 +22,11 @@ jobs:
             
             const tasks = [
               {
+                title: "Step 7: Deploy Your Portfolio",
+                path: '.github/curriculum/07-deployment.md',
+                labels: ['deployment']
+              },
+              {
                 title: "Step 6: Build the Header & Footer Section",
                 path: '.github/curriculum/06-header-footer.md',
                 labels: ['frontend']
